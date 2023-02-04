@@ -1,0 +1,302 @@
+:root {
+    --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    box-sizing: border-box;
+}
+
+.body-content {
+    overflow-y: scroll;
+}
+
+.body-content::-webkit-scrollbar {
+    display: none;
+}
+
+.body-content {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.material-icon {
+    font-family: 'Material Icons Round';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 20px;
+
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: no-wrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    top: 3px;
+    color: #fff;
+}
+
+/*  Navigation Bar  */
+
+.nav-container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(44, 51, 76, 0.7), rgba(24, 31, 56, 0.9)), url(bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#nav {
+    text-align: center;
+    height: 55px;
+    width: 1100px;
+    margin: auto;
+    transform: translate(0, 30%);
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.15);
+    background-image: linear-gradient(0.25turn, rgb(28, 34, 56), rgb(49, 57, 82));
+}
+
+#nav li {
+    list-style: none;
+    display: inline-block;
+}
+
+#nav a {
+    color: rgb(189, 198, 212);
+    display: block;
+    text-transform: capitalize;
+    font-weight: 400;
+    margin: 0;
+    padding: 16px 18px 16px;
+    text-decoration: none;
+}
+
+#nav button {
+    color: rgb(255, 255, 255);
+    display: block;
+    text-transform: capitalize;
+    margin: 0 0 0 -450px;
+    padding: 16px 18px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    overflow: hidden;
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/*  Login Form  */
+
+.form-box {
+    width: 400px;
+    height: 220px;
+    border-radius: 10px;
+    background-color: rgb(32, 41, 64);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.15);
+    transition: 0.25s;
+}
+
+.form-box h1 {
+    text-align: center;
+    margin: auto;
+    color: white;
+    font-size: 30px;
+    margin: 20px;
+    font-weight: 500;
+}
+
+.inputbox {
+    position: relative;
+    width: 350px;
+    height: 50px;
+    margin: 0 auto;
+}
+
+.inputbox input {
+    width: 350px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 10px 15px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.75);
+    transition: 0.3s;
+}
+
+.inputbox input:valid ~ span,
+.inputbox input:focus ~ span {
+    transform: translate(10px, -7px);
+    font-size: 0.75em;
+    padding: 0 10px;
+    background: rgb(32, 41, 64);
+}
+
+.inputbox input:valid,
+.inputbox input:focus {
+    border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+#footer {
+    margin-top: 0.875rem;
+    line-height: 1.5;
+    font-size: 0.875rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+#footer-url {
+    color: #1A73E8;
+    text-decoration: none;
+}
+
+.login-btn {
+    position: relative;
+    width: 350px;
+    height: 40px;
+    margin: 0 25px;
+    border-radius: 5px;
+    background: rgb(39, 128, 234);
+    outline: none;
+    border: none;
+    color: #fff;
+    font-weight: bolder;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    box-shadow: 0 3px 13px 8px rgba(39, 128, 234, 0.12);
+}
+
+.logging-in {
+    position: relative;
+    width: 350px;
+    height: 40px;
+    margin: 0 25px;
+    border-radius: 5px;
+    background: rgb(19, 108, 214);
+    outline: none;
+    border: none;
+    color: rgb(255, 255, 255, 0.6);
+    font-weight: bolder;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logging-in:hover {
+    box-shadow: 0 3px 13px 8px rgba(19, 108, 214, 0.12);
+}
+
+.logged-in {
+    position: relative;
+    width: 350px;
+    height: 40px;
+    margin: 0 25px;
+    border-radius: 5px;
+    background: rgb(48, 144, 9);
+    outline: none;
+    border: none;
+    color: rgb(255, 255, 255, 0.8);
+    font-weight: bolder;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logged-in:hover {
+    box-shadow: 0 3px 13px 8px rgba(48, 144, 9, 0.12);
+}
+
+.failed-login {
+    position: relative;
+    width: 350px;
+    height: 40px;
+    margin: 0 25px;
+    border-radius: 5px;
+    background: rgb(144, 28, 9);
+    outline: none;
+    border: none;
+    color: rgb(255, 255, 255, 0.8);
+    font-weight: bolder;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.failed-login:hover {
+    box-shadow: 0 3px 13px 8px rgba(144, 28, 9, 0.12);
+}
+
+/*  Alert  */
+
+.alert {
+    position: relative;
+    margin-bottom: 1rem;
+    border: 0 solid transparent;
+    border-radius: 0.375rem;
+    width: 350px;
+    margin: 0 25px 8px;
+    text-align: center;
+    height: 40px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.alert-danger {
+    color: #ffdddd;
+    background-color: #fdd9d7;
+    border-color: #fcc7c2;
+}
+
+.alert-danger .alert-link {
+    color: #75201a;
+}
+
+.alert-danger {
+    background-image: linear-gradient(195deg, #EF5350 0%, #E53935 100%);
+}
