@@ -1,1 +1,130 @@
-<h1>Hello, World!</h1>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Krypton | Login </title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="login.css">
+        <script>
+            if (localStorage.getItem("api_key")) {
+                window.location.href = "./dashboard.html";
+            }
+        </script>
+    </head>
+    <body class="body-content">
+        <div class="nav-container">
+            <ul id="nav">
+                <li><button href="/dashboard.html">Krypton</button></li>
+                <li><a href="/dashboard.html">Dashboard</a></li>
+                <li><a href="/faq.html">FAQ</a></li>
+            </ul>
+            <div class="form-box" id="login-form">
+                <h1>Log In</h1>
+                <div class="inputbox">
+                    <input type="password" id="inputbox" required="required">
+                    <span>API Key</span>
+                </div>
+                <div class="alert alert-danger" role="alert" id="alertmsg" style="display:none">Invalid API Key</div>
+                <button type="button" class="login-btn" id="login-btn">Log In</button>
+                <p id="footer">
+                    This website is for developers only. Read FAQ 
+                    <a href="./faq.html" id="footer-url">here</a>.
+                </p>
+            </div>
+        </div>
+
+        <script>
+            $(document).on('click', '#login-btn', function() {
+                var input = $("#inputbox").val();
+                $("#login-btn").attr("disabled", true);
+                $("#login-btn").attr("class", "logging-in");
+                $("#login-btn").text("Logging in...");
+
+                if (input.length != 3) {
+                    $("#login-btn").attr("class", "login-btn");
+                    $("#login-btn").text("Login in");
+                    $("#login-form").height(270);
+                    $("#alertmsg").height(0);
+                    $("#alertmsg").text("Invalid API Key");
+                    $("#alertmsg").fadeIn(300);
+                    $("#alertmsg").height(40);
+                    setTimeout(() => {
+                        $("#alertmsg").height(0);
+                        $("#alertmsg").fadeOut(300);
+                        $("#login-form").height(220);
+                        $("#login-btn").removeAttr("disabled")
+                    }, 2000)
+                    return;
+                }
+
+                const Http = {
+                    get: function(url, callback) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("GET", url, callback != undefined);
+                        xhr.setRequestHeader("Authorization", input);
+                        xhr.setRequestHeader("Content-Type", "application/json");
+                        if (callback != undefined) {
+                            xhr.onload = function() {
+                                callback(xhr.responseText);
+                            }
+                        }
+
+                        xhr.send();
+                        if (!callback) {
+                            return xhr.responseText;
+                        }
+                    }
+                }
+
+                Http.get("http://198.244.148.131:8080/v1/api/authorize", function(response) {
+                    var data = JSON.parse(response);
+                    if (!data) {
+                        $("#login-btn").attr("class", "login-btn");
+                        $("#login-btn").text("Login in");
+                        $("#login-form").height(270);
+                        $("#alertmsg").height(0);
+                        $("#alertmsg").text("Failed to get data");
+                        $("#alertmsg").fadeIn(300);
+                        $("#alertmsg").height(40);
+                        setTimeout(() => {
+                            $("#alertmsg").height(0);
+                            $("#alertmsg").fadeOut(300);
+                            $("#login-form").height(220);
+                            $("#login-btn").removeAttr("disabled")
+                        }, 2000)
+                        return;
+                    }
+                    
+                    if (data.message != "User authorized!") {
+                        $("#login-btn").attr("class", "login-btn");
+                        $("#login-btn").text("Login in");
+                        $("#login-form").height(270);
+                        $("#alertmsg").height(0);
+                        $("#alertmsg").text("Invalid API Key");
+                        $("#alertmsg").fadeIn(300);
+                        $("#alertmsg").height(40);
+                        setTimeout(() => {
+                            $("#alertmsg").height(0);
+                            $("#alertmsg").fadeOut(300);
+                            $("#login-form").height(220);
+                            $("#login-btn").removeAttr("disabled")
+                        }, 2000)
+                        return;
+                    }
+
+                    $("#login-btn").attr("class", "logged-in");
+                    $("#login-btn").text("Successfully logged in!");
+
+                    localStorage.setItem("api_key", input);
+                    setTimeout(() => {
+                        $("#login-btn").removeAttr("disabled");
+                        window.location.href = "./dashboard.html"
+                    }, 2000)
+                })
+            })
+        </script>
+    </body>
+</html>
